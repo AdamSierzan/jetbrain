@@ -51,3 +51,9 @@ for _ in range(1,100):
             print("fizzbuzz")
     else:
         print(_)
+
+
+    n = 8
+    n_list = []
+    n_list_2  = n_list.append(n)
+    print(n_list_2)

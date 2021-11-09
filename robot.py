@@ -11,5 +11,12 @@ def what_to_do(instructions):
     else:
         return "I won't do it"
 
-
+"""  """
 print(what_to_do("Simon says go excersice Simon says"))
+
+
+
+print("""' 
+' " '
+' " ' " '
+' " ' " ' " ' """)
