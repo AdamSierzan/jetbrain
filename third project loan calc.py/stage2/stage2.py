@@ -5,7 +5,11 @@ what_to_calculate = input("What do you want to calculate?\ntype 'm' for number o
 if what_to_calculate == 'm':
     monthly_payment = int(input("Enter the monthly payment: "))
     num_of_payments = ceil(loan_principal/monthly_payment)
-    print(f"It will take {(num_of_payments)} months to repay the loan")
+    if num_of_payments == 1:
+        print(f"It will take {(num_of_payments)} month to repay the loan")
+    else:
+        print(f"It will take {(num_of_payments)} months to repay the loan")
+
 else:
     number_of_months = int(input("Enter the number of months: "))
     payment = ceil(loan_principal/number_of_months)
@@ -19,5 +23,4 @@ else:
 
 
 
-#     print(f"Your monthly payment = {numbet_of_month}")
 
