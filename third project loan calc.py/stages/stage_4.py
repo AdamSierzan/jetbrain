@@ -1,4 +1,5 @@
 import math
+import argparse
 
 
 # loan_principal = int(input("Enter the loan principal: "))
@@ -56,6 +57,3 @@ if what_to_calculate == 'p': # loan principal
     loan_principal = annuity_payment / ((nominal_interest * math.pow(1 + nominal_interest, number_of_months)) /
     (math.pow(1 + nominal_interest, number_of_months) -1))
     print(f"Your loan principal = {math.floor(loan_principal)}!")
-
-m = input() # current payment moth
-mth_diff_payment = (loan_principal / number_of_months) + (nominal_interest * (loan_principal - ((loan_principal * (m -1)) / number_of_months)))
