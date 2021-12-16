@@ -39,26 +39,23 @@ if args.type == 'annuity':
 
     #to calculate time needed to pay the loan
     if args.periods == None:
-        interest_rate = args.interest * (0.01) / 12
-        number_of_months = math.log((args.payment) / ((args.payment) - interest_rate * (args.principal)), 1 + interest_rate)
-        # number_of_months = math.log((monthly_payment_amount) / ((monthly_payment_amount) - interest_rate * (loan_principal)), 1 + interest_rate)
+        interest_rate = args.interest / (12 * 100)
+        a = args.payment - interest_rate * args.principal
+        b = args.payment / a
+        i1 = 1 + interest_rate
+        number_of_months = math.ceil(math.log(b, i1))
 
-        solution = math.ceil(number_of_months)
-        m = solution % 12
-        y = solution // 12
-
-        Num = interest_rate * (1 + interest_rate) ** number_of_months
-        Deno = ((1 + interest_rate) ** number_of_months) - 1
-        annuity = math.ceil(args.principal * (Num / Deno))
-
-        if solution < 12:
+        m = number_of_months % 12
+        y = number_of_months // 12
+        
+        if number_of_months < 12:
             if m == 1:
                 print(f"It will take {m} month to repay this loan!")
             else:
                 print(f"It will take {m} months to repay this loan!")
-        elif solution == 12:
+        elif number_of_months == 12:
             print(f"It will take 1 year to repay this loan!")
-        elif solution == 13:
+        elif number_of_months == 13:
             print(f"It will take {y} year and {m} month to repay this loan!")
         else:
             if m == 0 and y > 1:
@@ -68,7 +65,7 @@ if args.type == 'annuity':
             elif m > 1 and y > 1:
                 print(f"It will take {y} years and {m} months to repay this loan!")
 
-        print(f'Overpayment = {math.ceil((annuity * number_of_months) - args.principal)}')
+        print(f'Overpayment = {math.ceil((number_of_months * args.payment) - args.principal)}')
 
 elif args.type == 'diff':
     if args.payment != None:
@@ -78,7 +75,7 @@ elif args.type == 'diff':
         m = 1
         sum_of_payments = 0
         for i in range(args.periods):
-            mth_diff_payment = (args.principal / args.periods) + (interest_rate * (args.principal - (args.principal * (m -1)) / args.periods))
+            mth_diff_payment = (args.principal / args.periods) + (interest_rate * (args.principal - (args.principal * (m - 1)) / args.periods))
             sum_of_payments += math.ceil(mth_diff_payment)
             print(f"Month {m}: payment is {math.ceil(mth_diff_payment)}")
             m += 1
