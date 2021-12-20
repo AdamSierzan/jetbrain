@@ -20,7 +20,7 @@ if what_to_calculate == 'n':
     m = solution % 12
     y = solution // 12
 
-    if solution < 12:
+    if solution < 12: 
         if m == 1:
             print(f"It will take {m} month to repay this loan!")
         else:
