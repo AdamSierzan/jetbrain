@@ -9,7 +9,7 @@ json_string = r.content
 json_string_obejct = json.loads(json_string)
 usd = json_string_obejct['usd']
 eur = json_string_obejct['eur']
-usd.update(eur)
+
 
 print(usd)
 
