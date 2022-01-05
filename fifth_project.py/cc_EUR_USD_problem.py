@@ -8,32 +8,26 @@ user_currency = input()
 r = requests.get(f'http://www.floatrates.com/daily/{user_currency.lower()}.json')
 json_string = r.content
 json_string_object = json.loads(json_string)
-usd_fixed = json_string_object['usd']
-eur_fixed = json_string_object['eur']
 
-if user_currency == "usd":
-    user_currency == usd_fixed
-elif user_currency == "eur":
-    user_currency == eur_fixed
-else:
-    
-
-new_dict = {usd_fixed['code']: usd_fixed['rate'], eur_fixed['code']: eur_fixed['rate']}
+new_dict = {}
 while True:
-  
     needed_currency = input().lower()
+    
     if needed_currency == "":
         break
     amount = float(input())
-    if needed_currency.upper() == 'USD':
+    if needed_currency == 'USD':
+        usd_fixed = json_string_object['usd']
+        new_dict = {usd_fixed['code']: usd_fixed['rate'], eur_fixed['code']: eur_fixed['rate']}
         print("Checking the cache...")
         print("Oh! It is in the cache!")
-        print(f"You received {round(amount*new_dict['USD'], 2)} USD.")
+        print(f"You received {round(amount*usd_fixed['rate'], 2)} USD.")
         continue
-    elif needed_currency.upper() == 'EUR':
+    elif needed_currency == 'EUR':
+        eur_fixed = json_string_object['eur']
         print("Checking the cache...")
         print("Oh! It is in the cache!")
-        print(f"You received {round(amount*new_dict['EUR'], 2)} EUR.")
+        print(f"You received {round(amount*eur_fixed['rate'], 2)} EUR.")
         continue
     elif needed_currency.upper() in new_dict.keys():
         print("Checking the cache...")
