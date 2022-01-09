@@ -1,7 +1,5 @@
 import requests
 import json
-import requests
-import json
 
 user_currency = input()
 
@@ -10,6 +8,7 @@ json_string = r.content
 json_string_object = json.loads(json_string)
 
 new_dict = {}
+
 while True:
     needed_currency = input().lower()
 
@@ -33,7 +32,8 @@ while True:
     elif needed_currency.upper() in new_dict.keys():
         print("Checking the cache...")
         print("Oh! It is in the cache!")
-        print(f"You received {round(amount * json_needed_currency['rate'], 2)} {needed_currency.upper()}.")
+        print(f"You received {round(amount * new_dict[needed_currency.upper()], 2)} {needed_currency.upper()}.")
+
         continue
     else:
         json_needed_currency = json_string_object[needed_currency]
@@ -42,6 +42,8 @@ while True:
         print("Sorry, but it is not in the cache!")
         print(f"You received {round(amount * json_needed_currency['rate'], 2)} {needed_currency.upper()}.")
         continue
+
+
 
 
 
